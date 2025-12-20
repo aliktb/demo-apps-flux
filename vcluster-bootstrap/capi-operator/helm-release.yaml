@@ -1,0 +1,24 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: capi-operator
+  namespace: capi-operator-system
+spec:
+  persistentClient: false
+  interval: 30m
+  releaseName: capi-operator
+  chart:
+    spec:
+      sourceRef:
+        kind: HelmRepository
+        name: capi-operator
+        namespace: capi-operator-system
+      chart: cluster-api-operator
+      version: "0.24"
+  install:
+    crds: CreateReplace
+    timeout: 600s
+  values:
+    infrastructure:
+      vcluster:
+        enabled: true
