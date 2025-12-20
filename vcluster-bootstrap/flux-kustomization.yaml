@@ -33,3 +33,22 @@ spec:
     kind: GitRepository
     name: flux-system
     namespace: flux-system
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: vcluster-capi
+  namespace: flux-system
+spec:
+  dependsOn:
+  - name: capi-operator
+  interval: 1h
+  retryInterval: 3m
+  timeout: 20m
+  prune: true
+  wait: true
+  path: ./vcluster-bootstrap/vcluster
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+    namespace: flux-system

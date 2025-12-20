@@ -1,0 +1,35 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: vcluster-demo-1
+---
+apiVersion: cluster.x-k8s.io/v1beta1
+kind: Cluster
+metadata:
+  name: virtual-cluster
+  namespace: vcluster-demo-1
+spec:
+  controlPlaneRef:
+    apiVersion: infrastructure.cluster.x-k8s.io/v1alpha1
+    kind: VCluster
+    name: virtual-cluster
+  infrastructureRef:
+    apiVersion: infrastructure.cluster.x-k8s.io/v1alpha1
+    kind: VCluster
+    name: virtual-cluster
+---
+apiVersion: infrastructure.cluster.x-k8s.io/v1alpha1
+kind: VCluster
+metadata:
+  name: virtual-cluster
+  namespace: vcluster-demo-1
+spec:
+  controlPlaneEndpoint:
+    host: ""
+    port: 0
+  helmRelease:
+    chart:
+      name: vcluster
+      repo: https://charts.loft.sh
+      version: 0.22.1
+    values: ""
