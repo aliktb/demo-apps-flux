@@ -1,3 +1,8 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: vcluster-demo-1
+---
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
@@ -55,5 +60,29 @@ spec:
   healthChecks:
   - apiVersion: v1
     kind: Secret
-    name: virtual-cluster-kubeconfig
+    name: vcluster-flux-kubeconfig
     namespace: vcluster-demo-1
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: vcluster-flux-bootstrap
+  namespace: vcluster-demo-1
+spec:
+  dependsOn:
+  - name: vcluster-capi
+    namespace: flux-system
+  interval: 1h
+  retryInterval: 3m
+  timeout: 20m
+  prune: true
+  wait: true
+  path: ./clusters/virtual-cluster
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+    namespace: flux-system
+  kubeConfig:
+    secretRef:
+      key: config
+      name: vcluster-flux-kubeconfig

@@ -32,4 +32,18 @@ spec:
       name: vcluster
       repo: https://charts.loft.sh
       version: 0.22.1
-    values: ""
+    values: |-
+      exportKubeConfig:
+        # Set a meaningful context name
+        context: default
+        # Use a server URL that is accessible from the Flux controllers
+        server: https://virtual-cluster.vcluster-demo-1.svc.cluster.local:443
+        # Skip TLS verification when Flux connects to the vCluster
+        insecure: true
+        # Specify the secret where the KubeConfig is stored
+        secret:
+          name: vcluster-flux-kubeconfig
+      controlPlane:
+        proxy:
+          extraSANs:
+          - "virtual-cluster.vcluster-demo-1.svc.cluster.local"
