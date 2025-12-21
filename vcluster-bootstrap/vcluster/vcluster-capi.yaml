@@ -47,3 +47,12 @@ spec:
         proxy:
           extraSANs:
           - "virtual-cluster.vcluster-demo-1.svc.cluster.local"
+      sync:
+        fromHost:
+          secrets:
+            enabled: true
+            mappings:
+              byName:
+                # syncs all Secrets from "foo" namespace
+                # to the "bar" namespace in a virtual cluster. Secrets names are unchanged.
+                "flux-system/flux-system": "flux-system/flux-system"
