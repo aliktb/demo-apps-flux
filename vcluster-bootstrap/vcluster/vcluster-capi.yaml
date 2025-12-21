@@ -24,20 +24,23 @@ metadata:
   name: virtual-cluster
   namespace: vcluster-demo-1
 spec:
+  # controlPlaneEndpoint:
+  #   host: ""
+  #   port: 0
   controlPlaneEndpoint:
-    host: ""
-    port: 0
+    host: "virtual-cluster.vcluster-demo-1.svc.cluster.local"
+    port: 443
   helmRelease:
     chart:
       name: vcluster
       repo: https://charts.loft.sh
-      version: 0.22.1
+      version: v0.3.0-alpha.2
     values: |-
       exportKubeConfig:
         # Set a meaningful context name
         context: default
         # Use a server URL that is accessible from the Flux controllers
-        server: https://virtual-cluster.vcluster-demo-1.svc.cluster.local:443
+        server: https://virtual-cluster.vcluster-demo-1.svc.cluster.local
         # Skip TLS verification when Flux connects to the vCluster
         insecure: true
         # Specify the secret where the KubeConfig is stored
@@ -47,12 +50,12 @@ spec:
         proxy:
           extraSANs:
           - "virtual-cluster.vcluster-demo-1.svc.cluster.local"
-      sync:
-        fromHost:
-          secrets:
-            enabled: true
-            mappings:
-              byName:
-                # syncs all Secrets from "foo" namespace
-                # to the "bar" namespace in a virtual cluster. Secrets names are unchanged.
-                "flux-system/flux-system": "flux-system/flux-system"
+      # sync:
+      #   fromHost:
+      #     secrets:
+      #       enabled: true
+      #       mappings:
+      #         byName:
+      #           # syncs all Secrets from "foo" namespace
+      #           # to the "bar" namespace in a virtual cluster. Secrets names are unchanged.
+      #           "flux-system/flux-system": "flux-system/flux-system"
