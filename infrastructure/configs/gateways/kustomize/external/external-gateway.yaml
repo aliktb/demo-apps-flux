@@ -3,7 +3,7 @@ kind: Gateway
 metadata:
   name: external-gateway
   annotations:
-    load-balancer.hetzner.cloud/name: "istio-gateway-api-vcluster-1"
+    load-balancer.hetzner.cloud/name: "istio-gateway-api-vcluster-2"
     load-balancer.hetzner.cloud/location: "fsn1"
     load-balancer.hetzner.cloud/use-private-ip: "true"
     # load-balancer.hetzner.cloud/health-check-protocol: http
