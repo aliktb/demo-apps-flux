@@ -1,0 +1,22 @@
+apiVersion: gateway.networking.k8s.io/v1
+kind: Gateway
+metadata:
+  name: external-gateway
+  annotations:
+    load-balancer.hetzner.cloud/name: "istio-gateway-api-vcluster-1"
+    load-balancer.hetzner.cloud/location: "fsn1"
+    load-balancer.hetzner.cloud/use-private-ip: "true"
+    # load-balancer.hetzner.cloud/health-check-protocol: http
+    # load-balancer.hetzner.cloud/health-check-port: 15021
+    # load-balancer.hetzner.cloud/health-check-http-path: /healthz/ready
+    # load-balancer.hetzner.cloud/health-check-port: 443
+spec:
+  gatewayClassName: istio
+  listeners:
+  - name: http
+    hostname: "*.k8s.aliktb.com"
+    port: 80
+    protocol: HTTP
+    allowedRoutes:
+      namespaces:
+        from: All
