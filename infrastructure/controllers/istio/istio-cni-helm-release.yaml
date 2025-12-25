@@ -21,3 +21,5 @@ spec:
     seccompProfile:
       type: RuntimeDefault
     profile: ambient
+    global:
+      platform: k3s
