@@ -14,7 +14,7 @@ spec:
   gatewayClassName: istio
   listeners:
   - name: http
-    hostname: "*.k8s.aliktb.com"
+    hostname: "*.apps.aliktb.com"
     port: 80
     protocol: HTTP
     allowedRoutes:
