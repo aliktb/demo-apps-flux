@@ -7,5 +7,3 @@ resources:
 - helm-repository.yaml
 - istio-base-helm-release.yaml
 - istiod-helm-release.yaml
-- istio-cni-helm-release.yaml
-- ztunnel-helm-release.yaml
