@@ -1,16 +1,17 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: apps
+  name: infrastructure-controllers
   namespace: flux-system
 spec:
   dependsOn:
-  - name: infrastructure-configs
+  - name: namespaces
   interval: 1h
   retryInterval: 1m
   timeout: 5m
   sourceRef:
     kind: GitRepository
     name: flux-system
-  path: ./apps
+  path: ./infrastructure/controllers
   prune: true
+  wait: true
