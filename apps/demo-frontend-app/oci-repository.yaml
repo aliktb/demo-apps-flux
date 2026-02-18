@@ -2,7 +2,6 @@ apiVersion: source.toolkit.fluxcd.io/v1
 kind: OCIRepository
 metadata:
   name: demo-frontend-app
-  namespace: sample-app-dev
 spec:
   interval: 10m0s
   provider: generic
