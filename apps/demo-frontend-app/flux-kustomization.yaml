@@ -5,6 +5,9 @@ metadata:
 spec:
   interval: 10m0s
   path: ./
+  postBuild:
+    substitute:
+      ENVIRONMENT_NAME: feat-1
   prune: true
   sourceRef:
     kind: OCIRepository
