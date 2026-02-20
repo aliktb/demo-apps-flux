@@ -7,5 +7,5 @@ spec:
   interval: 10m0s
   provider: generic
   ref:
-    tag: v1-manifests
+    tag: 2ab3aba0-k8s
   url: oci://docker.io/aliktb/demo-frontend-app
