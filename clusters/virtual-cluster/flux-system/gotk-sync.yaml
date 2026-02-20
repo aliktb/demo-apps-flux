@@ -8,7 +8,7 @@ metadata:
 spec:
   interval: 1m0s
   ref:
-    branch: main
+    branch: feat-001
   secretRef:
     name: flux-system
   url: https://github.com/aliktb/demo-apps-flux.git
