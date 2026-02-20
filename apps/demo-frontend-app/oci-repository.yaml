@@ -6,5 +6,5 @@ spec:
   interval: 10m0s
   provider: generic
   ref:
-    tag: bea583de-k8s
+    tag: 64e28ea3-k8s
   url: oci://registry.gitlab.com/aliktb-sandbox/demo-frontend-app
