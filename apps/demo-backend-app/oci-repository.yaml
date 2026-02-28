@@ -1,0 +1,10 @@
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: OCIRepository
+metadata:
+  name: demo-backend-app
+spec:
+  interval: 10m0s
+  provider: generic
+  ref:
+    tag: bea583de-k8s
+  url: oci://registry.gitlab.com/aliktb-sandbox/demo-backend-app
