@@ -6,5 +6,5 @@ spec:
   interval: 10m0s
   provider: generic
   ref:
-    tag: 30386b9f-k8s
+    tag: f743ab61-k8s
   url: oci://registry.gitlab.com/aliktb-sandbox/demo-backend-app
